@@ -2,9 +2,9 @@
 
 # 🚀 spawn-agent
 
-**Keep your AI agent's context clean by delegating scoped work to worker agents.**
+**A skill for [Antigravity](https://github.com/google-deepmind/antigravity) that delegates scoped work to worker agents, keeping the main context clean.**
 
-A skill for AI coding assistants that spawns [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Codex CLI](https://github.com/openai/codex) sessions to handle implementation, research, and bug fixes — while the main agent stays focused on orchestration.
+Antigravity doesn't natively support spawning sub-agents. This skill fills that gap — use [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Codex CLI](https://github.com/openai/codex) as worker agents to handle implementation, research, and bug fixes while the orchestrator stays focused.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -14,7 +14,7 @@ A skill for AI coding assistants that spawns [Gemini CLI](https://github.com/goo
 
 ## The Problem
 
-AI coding agents hit context limits fast. A single implementation task can fill the context window with file contents, build logs, and error traces — leaving no room for high-level reasoning.
+Antigravity is powerful, but it has no built-in way to delegate work to sub-agents. Every file read, build output, and error trace goes into the same context window — and it fills up fast. Once it does, the agent loses track of earlier instructions and can't reason about the big picture.
 
 **Before spawn-agent:**
 ```
@@ -71,25 +71,27 @@ npm install -g @openai/codex
 
 ### Install the Skill
 
-Clone into your agent's skills directory:
+Clone into your Antigravity skills directory:
 
 ```bash
-# For .agent/skills/ convention
-git clone https://github.com/AntGravity-SEA/spawn-agent.git .agent/skills/spawn-agent
+# Recommended: into your global skills directory
+git clone https://github.com/khanhbkqt/spawn-agent.git ~/.gemini/antigravity/skills/spawn-agent
 
-# For .gemini/skills/ convention
-git clone https://github.com/AntGravity-SEA/spawn-agent.git .gemini/skills/spawn-agent
+# Or per-project
+git clone https://github.com/khanhbkqt/spawn-agent.git .agent/skills/spawn-agent
 
-# Or symlink from anywhere
-git clone https://github.com/AntGravity-SEA/spawn-agent.git ~/spawn-agent
-ln -s ~/spawn-agent .agent/skills/spawn-agent
+# Or symlink from a central location
+git clone https://github.com/khanhbkqt/spawn-agent.git ~/spawn-agent
+ln -s ~/spawn-agent ~/.gemini/antigravity/skills/spawn-agent
 ```
 
 Make the script executable:
 
 ```bash
-chmod +x .agent/skills/spawn-agent/scripts/spawn-agent.sh
+chmod +x ~/.gemini/antigravity/skills/spawn-agent/scripts/spawn-agent.sh
 ```
+
+Antigravity will automatically discover the skill from `SKILL.md` and learn the delegation protocol.
 
 ## Quick Start
 
@@ -211,9 +213,10 @@ Other:
 
 ## Compatibility
 
-This skill is designed for any AI coding assistant that reads `SKILL.md` files as behavioral instructions:
+Built for **Antigravity** (Google DeepMind), but works with any AI coding assistant that reads `SKILL.md` files:
 
-- **Claude Code** (Anthropic) — `.agent/skills/` or custom skills directory
+- **Antigravity** — `~/.gemini/antigravity/skills/` (primary target)
+- **Claude Code** (Anthropic) — `.agent/skills/`
 - **Gemini CLI** (Google) — `.gemini/skills/`
 - **Cursor** — via rules or skills directories
 - **Any agent** that supports Markdown-based skill definitions
