@@ -44,7 +44,11 @@ Before spawning, the orchestrator must determine:
 
 ### Step 2: COMPOSE — Write the prompt file using a template
 
-Choose the appropriate template and fill it in. Save to `/tmp/spawn-agent-task-<name>.md`.
+Choose the appropriate template and fill it in. Save to `.agent/spawn_agent_tasks/<name>.md`.
+
+> [!NOTE]
+> Create the directory if it doesn't exist: `mkdir -p .agent/spawn_agent_tasks`
+> Add `.agent/spawn_agent_tasks/` to `.gitignore` if you don't want to track task files.
 
 #### Template Selection Guide
 
@@ -73,15 +77,15 @@ Choose the appropriate template and fill it in. Save to `/tmp/spawn-agent-task-<
 ```bash
 # Gemini — implementation task
 spawn-agent.sh --gemini --auto-edit --timeout 300 \
-  -f /tmp/spawn-agent-task-<name>.md
+  -f .agent/spawn_agent_tasks/<name>.md
 
 # Codex — implementation task
 spawn-agent.sh --codex --auto-edit --timeout 300 \
-  -f /tmp/spawn-agent-task-<name>.md
+  -f .agent/spawn_agent_tasks/<name>.md
 
 # Gemini — research (yolo is fine for read-only research)
 spawn-agent.sh --gemini --yolo --timeout 120 \
-  -f /tmp/spawn-agent-task-<name>.md
+  -f .agent/spawn_agent_tasks/<name>.md
 
 # Quick task — any agent
 spawn-agent.sh --codex --yolo --timeout 60 \
@@ -98,10 +102,10 @@ spawn-agent.sh --codex --yolo --timeout 60 \
 
 ### Step 4: REVIEW — Read the output
 
-Output is saved to `/tmp/spawn-agent-output-<timestamp>.log`.
+Output is saved to `.agent/spawn_agent_tasks/output-<timestamp>.log`.
 
 ```bash
-cat /tmp/spawn-agent-output-*.log | tail -100
+cat .agent/spawn_agent_tasks/output-*.log | tail -100
 ```
 
 Verify:

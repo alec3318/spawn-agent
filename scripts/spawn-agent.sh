@@ -16,7 +16,8 @@ APPROVAL_MODE="auto_edit" # gemini: auto_edit|yolo|default  codex: (uses suggest
 TIMEOUT=300
 PROMPT=""
 PROMPT_FILE=""
-OUTPUT_FILE="/tmp/spawn-agent-output-$(date +%Y%m%d-%H%M%S).log"
+TASKS_DIR=".agent/spawn_agent_tasks"
+OUTPUT_FILE="${TASKS_DIR}/output-$(date +%Y%m%d-%H%M%S).log"
 
 # ─── Parse args ─────────────────────────────────────────────
 usage() {
@@ -152,6 +153,9 @@ elif command -v timeout &>/dev/null; then
 else
   TIMEOUT_CMD=""
 fi
+
+# ─── Ensure output directory exists ─────────────────────────
+mkdir -p "$TASKS_DIR"
 
 # ─── Execute ────────────────────────────────────────────────
 AGENT_UPPER=$(echo "$AGENT" | tr '[:lower:]' '[:upper:]')
